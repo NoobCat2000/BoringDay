@@ -3,7 +3,7 @@
 Cái project nhỏ này là mình đánh cắp từ project PowerChell của Orange Cyberdefense. Vô tình lướt được ở trên twitter, ban đầu đọc README của project thì mình nghĩ nó chỉ là phiên bản vớ vẩn nào đó dùng CLR Hosting để chạy Powershell. Nhưng khi đọc code thì nhận ra nó là cái gì đó rất mới. Mọi người nên đọc blog gốc tại đây:
 https://blog.scrt.ch/2025/02/18/reinventing-powershell-in-c-c/
 
-Ngày trước thì Cobalt Strike có command là **execute-assembly** để thực thi được .NET Assembly trong unmanaged process. Bản chất của kỹ thuật đó là CLR Hosting + Load Assembly. Cơ mà sau này ETW có cải tiến để có thể thu thập được sự kiện Assembly Load trong CLR, sau đó EDR hoặc AV có thể trích xuất được Assembly là scan có phải mã độc hay không.
+Ngày trước thì Cobalt Strike có command là **execute-assembly** để thực thi được .NET Assembly trong unmanaged process. Bản chất của kỹ thuật đó là CLR Hosting + Load Assembly. Cơ mà sau này CLR có log cái sự kiện Assembly Load này qua ETW, sau đó EDR hoặc AV đọc từ ETW và có thể trích xuất được Assembly là scan có phải mã độc hay không.
 Còn cái PowerChell này nó mới ở chỗ là sau khi CLR Hosting, nó sẽ quá mô phỏng lại code của C# thông qua COM, dùng C/C++. Ví dụ như sau:
 
 ```cs
@@ -18,11 +18,11 @@ class Program
 }
 ```
 Khi dùng COM để thực hiện được 
-Bước 1: Load Assembly **Microsoft.PowerShell.ConsoleHost**.
-Bước 2: Tìm kiếm Class ConsoleShell trong Assembly **Microsoft.PowerShell.ConsoleHost**.
-Bước 3: Tìm kiếm Method Start của Class ConsoleShell.
-Bước 4: Khởi tạo tham số cho Method Start.
-Bước 5: Gọi hàm Start
+* Bước 1: Load Assembly **Microsoft.PowerShell.ConsoleHost**.
+* Bước 2: Tìm kiếm Class ConsoleShell trong Assembly **Microsoft.PowerShell.ConsoleHost**.
+* Bước 3: Tìm kiếm Method Start của Class ConsoleShell.
+* Bước 4: Khởi tạo tham số cho Method Start.
+* Bước 5: Gọi hàm Start
 Đây là code mẫu để thực hiện bước 4 và bước 5
 ```c
 if (!FindMethodInArray(pConsoleShellMethods, L"Start", 4, &pStartMethodInfo))
