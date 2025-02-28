@@ -68,7 +68,10 @@ class Program
         {
             ps.AddScript(script);
             Collection<PSObject> results = ps.Invoke()
-            Console.WriteLine(result.ToString());
+            foreach (PSObject result in results)
+            {
+                Console.WriteLine(result.ToString());
+            }
         }
     }
 }
