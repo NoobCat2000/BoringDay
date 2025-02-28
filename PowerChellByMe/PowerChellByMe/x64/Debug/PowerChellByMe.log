@@ -1,0 +1,16 @@
+﻿cl : command line  warning D9025: overriding '/sdl' with '/GS-'
+  main.c
+C:\Users\Admin\source\repos\PowerChellByMe\PowerChellByMe\main.c(161,48): warning C4018: '>': signed/unsigned mismatch
+  (compiling source file '/main.c')
+  
+C:\Users\Admin\source\repos\PowerChellByMe\PowerChellByMe\main.c(219,17): warning C4013: 'IsFileExist' undefined; assuming extern returning int
+  (compiling source file '/main.c')
+  
+C:\Users\Admin\source\repos\PowerChellByMe\PowerChellByMe\main.c(324,23): warning C4018: '<': signed/unsigned mismatch
+  (compiling source file '/main.c')
+  
+C:\Users\Admin\source\repos\PowerChellByMe\PowerChellByMe\main.c(578,31): warning C4133: '=': incompatible types - from '_MethodInfo *' to 'IUnknown *'
+  (compiling source file '/main.c')
+  
+main.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  PowerChellByMe.vcxproj -> C:\Users\Admin\source\repos\PowerChellByMe\x64\Debug\PowerChellByMe.exe
