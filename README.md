@@ -22,7 +22,8 @@ Khi dùng COM để thực hiện được
 * Bước 2: Tìm kiếm Class ConsoleShell trong Assembly **Microsoft.PowerShell.ConsoleHost**.
 * Bước 3: Tìm kiếm Method Start của Class ConsoleShell.
 * Bước 4: Khởi tạo tham số cho Method Start.
-* Bước 5: Gọi hàm Start
+* Bước 5: Gọi method Start
+
 Đây là code mẫu để thực hiện bước 4 và bước 5
 ```c
 if (!FindMethodInArray(pConsoleShellMethods, L"Start", 4, &pStartMethodInfo))
